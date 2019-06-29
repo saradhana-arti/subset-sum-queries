@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+#define MAXSUM 100000
+void process(bitset<MAXSUM> &bit ,ll a[],ll n)
+{
+	bit.reset();
+	bit[0]=1; //0 is subset of every set
+	for(int i=0 ; i<n ;i++)
+	{
+			bit=bit|(bit<<a[i]);
+	}
+}
+void count(bitset<MAXSUM> &bit)
+{
+	for(int i=0 ; i<100 ;i++)
+	{
+			if(bit[i]==1)
+				cout<<i<<" ";
+	}
+}
+int main()
+{
+	ll n , m, i ;
+	cout<<"enter the no. of queries\n";
+	cin>>m;
+	while(m--)
+	{
+		cout<<"enter the no. of element in the set\n";
+		cin>>n;
+		ll a[n];
+		for(i=0 ; i<n ;i++)
+			cin>>a[i];
+		bitset<MAXSUM> bit;
+		process(bit,a,n);
+		cout<<"\npossible sum of subset in set is: \n";
+		count(bit);
+		cout<<endl;
+	}
+
+
+}
